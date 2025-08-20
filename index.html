@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeNest - AI Image Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <div class="brand">
+                    <div class="logo">                    </div>
+                    <div>
+                        <h1>CodeNest - AI Image Generator</h1>
+                        <span class="muted">Powered by Pollinations, Stable Diffusion/Flux</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <section>
+                    <label for="prompt" class="muted">Prompt</label>
+                    <textarea id="prompt" placeholder="e.g a cat astronoaut playing guitar on moon, cinematic lighting, ultra detailed"></textarea>
+
+                    <div class="controls" style="margin-top: 10px;">
+                        <div>
+                            <label for="style" class="muted">Style</label>
+                            <select id="style">
+                                <option value="">None ( raw )</option>
+                                <option value=", ultra-detailed, photo-realistic, 50mm lens, depth of field">PhotoRealistic</option>
+                                <option value=", Anime Styles, Vibrant Colors, dramatic lighting">Anime</option>
+                                <option value=", 3d render, octane render, subsurface scattering, global illumination">3d Render</option>
+                                <option value=", pixel-art, 16-bit, isometric, low-res aesthetic">Pixel Art</option>
+                                <option value=", watercolor, paper texture, soft brush, pastel tones">WaterColor</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="ratio" class="muted">Aspect Ratio</label>
+                            <select id="ratio">
+                                <option value="1:1">1:1 (square)</option>
+                                <option value="16:9">16:9 (wide)</option>
+                                <option value="9:16">9:16 (portrait)</option>
+                                <option value="3:2">3:2</option>
+                                <option value="2:3">2:3</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="seed" class="muted">Seed (optional)</label>
+                            <input type="text" id="seed" placeholder="Random">
+                        </div>
+
+                        <div>
+                            <label for="model" class="muted">Model</label>
+                            <select id="model">
+                                <option value="flux">FLUX</option>
+                                <option value="sdxl">SDXL</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="actions" style="margin-top: 14px;">
+                        <button class="btn-primary" id="generate">Generate</button>
+                        <button class="btn-ghost" id="surprise">Surprise Me!</button>
+                        <button class="btn-ghost" id="clearHistory">Clear History</button>
+                    </div>
+
+                    <p class="note" style="margin-top: 8px;">Tip: Add Subject + Style + lighting + lens + mood. e.g: neo-tokyo city at night, rainy, cinematic, 35mm, bokeh</p>
+                </section>
+
+                <section>
+                    <div class="output" id="output">
+                        <div class="muted">Your Generated Image will appear here.</div>
+                    </div>
+                    <div class="bar">
+                        <div class="actions">
+                            <button class="btn-ghost" id="download" disabled>Download</button>
+                            <button class="btn-ghost" id="copyPrompt" disabled>Copy Prompt</button>
+                            <button class="btn-ghost" id="regenerate" disabled>Re-generate (same seed)</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 18px; padding: 18px;">
+            <div class="bar">
+                <h2 style="margin: 0;font-size: 18px;">Recents</h2>
+                <span class="note">stored locally in your browser</span>
+            </div>
+            <div class="gallery" id="gallery"></div>
+        </div>
+
+        <p class="note" style="margin-top: 16px;">This app uses <a class="link" href="https://pollinations.ai" target="_blank">pollination </a>which generates images via Stable Diffusion/Flux. No key Required, be mindful of rate limits</p>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <script src="script.js"></script>
+</body>
+</html>
